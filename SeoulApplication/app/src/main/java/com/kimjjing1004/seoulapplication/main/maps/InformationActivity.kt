@@ -49,7 +49,7 @@ class InformationActivity : AppCompatActivity() {
 //        textviewHtmlDocument!!.movementMethod = ScrollingMovementMethod()
 
         Thread {
-            value2 = getJson("http://192.168.1.33:8000/restaurant")
+            value2 = getJson("http://15.165.104.248:8000/restaurant")
             Thread.sleep(100L)
             judgeString2()
 

@@ -25,12 +25,12 @@ class HomeActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        if (intent.hasExtra("English")) {
-            english = intent.getStringExtra("English").toString()
+        if (intent.hasExtra("EnglishKey")) {
+            english = intent.getStringExtra("EnglishKey").toString()
             korea = ""
 
-        } else if (intent.hasExtra("Korea")) {
-            korea = intent.getStringExtra("Korea").toString()
+        } else if (intent.hasExtra("KoreaKey")) {
+            korea = intent.getStringExtra("KoreaKey").toString()
             english = ""
 
         } else {

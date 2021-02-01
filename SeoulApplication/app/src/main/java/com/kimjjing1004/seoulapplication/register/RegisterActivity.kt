@@ -42,9 +42,10 @@ class RegisterActivity : AppCompatActivity() {
             /* "nameKey"라는 이름의 key에 저장된 값이 있다면
                textView의 내용을 "nameKey" key에서 꺼내온 값으로 바꾼다 */
 
-        }else {
-            Toast.makeText(this, "there isn't transferred name", Toast.LENGTH_SHORT).show()
         }
+//        else {
+//            Toast.makeText(this, "there isn't transferred name", Toast.LENGTH_SHORT).show()
+//        }
 
         if(english=="EnglishData"){
             binding.btnRegister2.text = "Registration completed"
@@ -55,7 +56,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.33:8000/")
+            .baseUrl("http://15.165.104.248:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -103,6 +104,7 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.makeText(this@RegisterActivity, "가입성공!!", Toast.LENGTH_SHORT)
                                 .show()
                             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                            intent.putExtra("KoreaKey","KoreaData")
                             startActivity(intent)
                         } else if (response.code() == 400) {
                             Toast.makeText(
@@ -152,6 +154,7 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.makeText(this@RegisterActivity, "가입성공!!", Toast.LENGTH_SHORT)
                                 .show()
                             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                            intent.putExtra("KoreaKey","KoreaData")
                             startActivity(intent)
                         } else {
                             Toast.makeText(this@RegisterActivity, "가입실패!!", Toast.LENGTH_SHORT)
@@ -167,6 +170,7 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.makeText(this@RegisterActivity, "Successfully signed up!!", Toast.LENGTH_SHORT)
                                 .show()
                             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                            intent.putExtra("EnglishKey","EnglishData")
                             startActivity(intent)
                         } else if (response.code() == 400) {
                             Toast.makeText(
@@ -216,6 +220,7 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.makeText(this@RegisterActivity, "Successfully signed up!!", Toast.LENGTH_SHORT)
                                 .show()
                             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                            intent.putExtra("EnglishKey","EnglishData")
                             startActivity(intent)
                         } else {
                             Toast.makeText(this@RegisterActivity, "Failed to sign up!!", Toast.LENGTH_SHORT)

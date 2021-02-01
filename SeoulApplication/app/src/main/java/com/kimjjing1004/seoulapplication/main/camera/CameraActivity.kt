@@ -83,7 +83,16 @@ class CameraActivity : AppCompatActivity() {
                 binding.GImageView.setImageBitmap(imageBitmap)
             }
 
+            binding.btnCamera.text = "Photo shoot"
+            binding.imgBtn.text = "Select image"
             binding.moveOnMap.text = "Move on Map"
+            binding.photoResult.text = "Take a picture or upload it"
+            binding.TextMultiLine.text = ""
+
+            binding.btnCamera.visibility = View.INVISIBLE
+            binding.imgBtn.visibility = View.INVISIBLE
+            binding.GImageView.visibility = View.INVISIBLE
+            binding.photoResult.visibility = View.INVISIBLE
 
         } else if (intent.hasExtra("Korea") && intent.hasExtra("Camera")
             && intent.hasExtra("Picture") && intent.hasExtra("Rotation")) {
@@ -101,7 +110,18 @@ class CameraActivity : AppCompatActivity() {
             else if(rotateValue=="Rotate2"){
                 binding.GImageView.setImageBitmap(imageBitmap)
             }
+            binding.btnCamera.text = "카메라촬영"
+            binding.imgBtn.text = "이미지선택"
             binding.moveOnMap.text = "지도로이동"
+            binding.photoResult.text = "사진을 촬영하거나 업로드하세요"
+            binding.TextMultiLine.text = ""
+
+            binding.btnCamera.visibility = View.INVISIBLE
+            binding.imgBtn.visibility = View.INVISIBLE
+            binding.photoResult.visibility = View.INVISIBLE
+            binding.GImageView.visibility = View.INVISIBLE
+
+
 
         }
         else if (intent.hasExtra("EnglishKey")) {
@@ -123,8 +143,8 @@ class CameraActivity : AppCompatActivity() {
 
         if(camera=="CameraData"){
             Thread {
-                landmarkValue = getJson("http://192.168.1.33:8000/img_processing")
-                value = getJson("http://192.168.1.33:8000/landmark")
+                landmarkValue = getJson("http://15.165.104.248:8000/img_processing")
+                value = getJson("http://15.165.104.248:8000/landmark")
                 judgeString()
 
             }.start()
@@ -209,6 +229,7 @@ class CameraActivity : AppCompatActivity() {
                             koreaIntent.putExtra("KoreaKey", "KoreaData")
                             koreaIntent.putExtra("PictureKey",pictureValue)
                             koreaIntent.putExtra("RotationKey","Rotate2")
+
                             startActivity(koreaIntent)
                         } else if (english=="EnglishData") {
                             val englishIntent = Intent(this@CameraActivity, LoadingActivity::class.java)
@@ -302,9 +323,10 @@ class CameraActivity : AppCompatActivity() {
             binding.root.post {
             binding.photoResult.text = landmarkName
             binding.TextMultiLine.text = landmarkDesc
-            binding.btnCamera.visibility = View.INVISIBLE
-            binding.imgBtn.visibility = View.INVISIBLE
             binding.moveOnMap.visibility = View.VISIBLE
+            binding.photoResult.visibility = View.VISIBLE
+            binding.GImageView.visibility = View.VISIBLE
+
             }
 
     }

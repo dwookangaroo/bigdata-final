@@ -27,27 +27,27 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/the_travelers_walking_cycle_delivery" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/cameraScanning"
-        android:layout_width="170dp"
-        android:layout_height="600dp"
-        android:layout_marginEnd="68dp"
-        android:rotation="12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/camera_scanning" />
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/cameraScanning"-->
+<!--        android:layout_width="170dp"-->
+<!--        android:layout_height="600dp"-->
+<!--        android:layout_marginEnd="68dp"-->
+<!--        android:rotation="12"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_loop="true"-->
+<!--        app:lottie_rawRes="@raw/camera_scanning" />-->
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/handleMobile"
-        android:layout_width="400dp"
-        android:layout_height="570dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/outline_handheld_mobile_photo" />
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/handleMobile"-->
+<!--        android:layout_width="400dp"-->
+<!--        android:layout_height="570dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_loop="true"-->
+<!--        app:lottie_rawRes="@raw/outline_handheld_mobile_photo" />-->
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loadingBar"
