@@ -2,26 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b72026c-70cd-4ab2-a895-36dad8f7a794" name="Default Changelist" comment="django">
+      <change afterPath="$PROJECT_DIR$/final/static/python/hotel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/hotel-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/hotel-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling_translate/crawling.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/python/crawling_translate/crawling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling_translate/find_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/python/crawling_translate/find_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling_translate/lang-final.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/python/crawling_translate/lang-final.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling_translate/opencv.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/python/crawling_translate/opencv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling_translate/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/python/crawling_translate/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling_translate/trans.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/python/crawling_translate/trans.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling_translate/translator.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/python/crawling_translate/translator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/호텔.csv" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/csv/호텔.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final/final/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/final/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final/final/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/final/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final/landmark/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/home/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final/landmark/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/final/landmark/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/final/landmark/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/final/home/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final/landmark/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/final/landmark/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/final/landmark/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/python/hotel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final/static/python/hotel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/hotel.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +45,7 @@
       <recent name="C:\work\pythonProject\bigdata-final\final\home" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.settings">
+  <component name="RunManager" selected="Python.hotel">
     <configuration name="crawling" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="bigdata-final" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -76,6 +59,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawling_translate/crawling.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hotel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="bigdata-final" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/final/static/python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/final/static/python/hotel.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -149,6 +153,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.hotel" />
         <item itemvalue="Python.settings" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.lang-final" />
@@ -186,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631752691139</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="django">
+      <created>1631765724910</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1631765724910</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
