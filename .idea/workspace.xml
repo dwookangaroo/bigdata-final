@@ -2,9 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b72026c-70cd-4ab2-a895-36dad8f7a794" name="Default Changelist" comment="django">
-      <change afterPath="$PROJECT_DIR$/final/static/python/hotel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ImgProcessing/template/hotel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bigdata-final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bigdata-final.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final/static/python/hotel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/hotel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/migrations/0002_post.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgAnal/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgProcessing/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImgProcessing/ImgProcessing/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/ImgProcessing/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImgProcessing/ImgProcessing/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImgProcessing/template/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ImgProcessing/template/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_filter.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/image_filter.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_train.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/image_train.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img_test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/img_test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jupyter" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/jupyter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/map.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matzip-map.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/matzip-map.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matzip.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/matzip.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/song_test_filter.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/song_test_filter.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/total_map.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/total_map.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transfer learning.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/final/static/jupyter/transfer learning.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +39,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -32,41 +58,25 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/final/static/jupyter" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work\pythonProject\bigdata-final\final\static\jupyter" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\work\pythonProject\bigdata-final\ImgProcessing" />
       <recent name="C:\work\pythonProject\bigdata-final\final\static\jupyter" />
       <recent name="C:\work\pythonProject\bigdata-final\final\static\python" />
       <recent name="C:\work\pythonProject\bigdata-final\final\static\csv" />
       <recent name="C:\work\pythonProject\bigdata-final\final" />
-      <recent name="C:\work\pythonProject\bigdata-final\final\home" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.hotel">
-    <configuration name="crawling" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="bigdata-final" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/crawling_translate" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawling_translate/crawling.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.views">
     <configuration name="hotel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="bigdata-final" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -151,13 +161,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="bigdata-final" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ImgProcessing/ImgAnal" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\work\pythonProject\bigdata-final\ImgProcessing\views.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.views" />
         <item itemvalue="Python.hotel" />
         <item itemvalue="Python.settings" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.lang-final" />
-        <item itemvalue="Python.crawling" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631765724910</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="django">
+      <created>1631770044617</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1631770044617</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

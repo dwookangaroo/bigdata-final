@@ -20,16 +20,19 @@ from django.conf.urls.static import static
 
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
+from django import views
 
+router = routers.DefaultRouter()
+router.register(r'images', views.ImageViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('ImgAnal.urls')),
-
+    path('ImgAnal/', include('ImgAnal.urls')),
+    path('', include('router.urls')),
+    re_path('admin/', admin.site.urls),
 ]
 
 

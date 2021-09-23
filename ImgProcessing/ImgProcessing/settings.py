@@ -26,7 +26,7 @@ SECRET_KEY = 'a@#!tybj6-(o$ac9$5obp5^51=il&34^x8a#rgem45qv!)1shw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,12 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 
 
@@ -83,8 +89,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_db',
-        'USER': 'hjs429',
-        'PASSWORD': '1234',
+        'USER': 'dwk9181',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT' : 3306
     }
