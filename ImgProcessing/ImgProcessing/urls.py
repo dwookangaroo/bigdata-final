@@ -24,12 +24,18 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
-
+from ImgAnal import views
 
 urlpatterns = [
+    path('img_processing/', views.image_upload_view, name='img_process'),
+    path('addresses/', views.address_list),
+    path('addresses/<int:pk>/', views.address),
+    path('login/', views.login),
+    path('app_login/', views.app_login),
+    path('app_register/', views.app_register),
     path('admin/', admin.site.urls),
-    path('', include('ImgAnal.urls')),
-
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('upload/', views.ImageCreateAPIView.as_view(), name='upload'),
 ]
 
 

@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Image
-
-
 
 # Register your models here.
+from ImgAnal.models import MyImage, Addresses
 
-admin.site.register(Image)
+admin.site.register(MyImage)
+admin.site.register(Addresses)
