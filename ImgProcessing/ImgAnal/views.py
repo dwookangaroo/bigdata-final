@@ -45,7 +45,6 @@ def image_upload_view(request):
     #         # Get the current instance object to display in the template
     #         img_obj = form.instance
 
-    time.sleep(1)
     file = r'D:\bigdata_project\ImgProcessing\media\media\images\testFile.jpg'
 
     X = []
@@ -90,7 +89,10 @@ def image_upload_view(request):
     else:
         pass
 
-    return render(request, 'index.html', {'pre_ans_str': pre_ans_str})
+    awb_dict = {'pre_ans_str':pre_ans_str}
+
+    return HttpResponse(simplejson.dumps(awb_dict) )
+    # return render(request, 'index.html', {'pre_ans_str': pre_ans_str})
     # else:
     #     form =ImageForm()
     # return render(request, 'index.html', {'form': form,})
