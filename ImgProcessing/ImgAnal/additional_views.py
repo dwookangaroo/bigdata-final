@@ -1,44 +1,9 @@
-import json
-import time
-import os
 
-import pymysql
-import simplejson
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.generics import CreateAPIView
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-from .forms import ImageForm
-from .models import Addresses, MyImage, Landmarks, Restaurants, Hotels
-from .serializers import AddressesSerializer, ImageSerializer
-from rest_framework.parsers import JSONParser
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
-import re
-# from .forms import ImageForm
-from tensorflow.keras.models import Sequential, load_model
-from PIL import Image
-import numpy as np
 from haversine import haversine
 
 # caltech_dir = "D:/bigdata_project/ImgProcessing/static/final_test"
-pre_ans_str=''
-pre_number = 0
+pre_ans_str = ''
 new_model = load_model('model/trained_model.h5')
-
-conn = pymysql.connect(host="localhost",  # ex) '127.0.0.1'
-                       port=3306,
-                       user="hjs429",  # ex) root
-                       password="1234",
-                       database="django_db",
-                       charset='utf8')
 
 
 class ImageCreateAPIView(CreateAPIView):
@@ -47,7 +12,6 @@ class ImageCreateAPIView(CreateAPIView):
 
 
 def image_upload_view(request):
-    global pre_ans_str
     """Process images uploaded by users"""
     # if request.method == 'POST':
     #     form = ImageForm(request.POST, request.FILES)
@@ -103,7 +67,7 @@ def image_upload_view(request):
 
     awb_dict = {'pre_ans_str':pre_ans_str}
 
-    return HttpResponse(simplejson.dumps(awb_dict))
+    return HttpResponse(simplejson.dumps(awb_dict) )
     # return render(request, 'index.html', {'pre_ans_str': pre_ans_str})
     # else:
     #     form =ImageForm()
@@ -245,119 +209,3 @@ def app_register(request):
             member.set_password(pw)
             member.save()
             return JsonResponse({'code': '0000', 'msg': '계정 사용 가능!'}, status=200)
-
-def hotel_recommendation(request):
-    global pre_number
-    global pre_ans_str
-    if pre_ans_str == '경복궁':
-        pre_number = 0
-    elif pre_ans_str == '명동성당':
-        pre_number = 1
-    elif pre_ans_str == '이순신동상':
-        pre_number = 2
-    elif pre_ans_str == '63빌딩':
-        pre_number = 3
-    elif pre_ans_str == '탑골공원팔각정':
-        pre_number = 4
-    elif pre_ans_str == '독립문':
-        pre_number = 5
-    elif pre_ans_str == '남산타워':
-        pre_number = 6
-    elif pre_ans_str == '롯데타워':
-        pre_number = 7
-    elif pre_ans_str == '코엑스':
-        pre_number = 8
-    elif pre_ans_str == '서대문형무소':
-        pre_number = 9
-    elif pre_ans_str == '구서울역':
-        pre_number = 10
-
-
-    landmark = Landmarks.objects.values('name', 'lat', 'lng')
-    landmark_lat = landmark[pre_number]['lat']
-    landmark_lng = landmark[pre_number]['lng']
-    landmark_latlng = landmark_lat, landmark_lng
-######################################################################
-
-    hotel = Hotels.objects.values('rating', 'name', 'address', 'lat', 'lng')
-
-    distance_hot = []
-    for count, value in enumerate(hotel):
-        hotel_lat = hotel[count]['lat']
-        hotel_lng = hotel[count]['lng']
-        hotel_latlng = hotel_lat, hotel_lng
-        d = haversine(landmark_latlng, hotel_latlng, unit='km')
-        distance_hot.append((d, hotel[count]['name'], hotel[count]['lat'],
-                            hotel[count]['lng'], hotel[count]['address'], hotel[count]['rating']))
-
-    distance_hot = sorted(distance_hot, key=lambda x:x[0])
-    n = 5
-    distance_hot_final = distance_hot[:n]
-
-    new_dict = {}
-
-    for i in range(len(distance_hot_final)):
-        new_dict[i] =  [distance_hot_final[i][1], distance_hot_final[i][2],\
-                        distance_hot_final[i][3], distance_hot_final[i][4],\
-                        distance_hot_final[i][5], distance_hot_final[i][0]]
-
-
-    return HttpResponse(simplejson.dumps(new_dict))
-
-
-def restaurant_recommendation(request):
-    global pre_number
-    global pre_ans_str
-
-    if pre_ans_str == '경복궁':
-        pre_number = 0
-    elif pre_ans_str == '명동성당':
-        pre_number = 1
-    elif pre_ans_str == '이순신 동상':
-        pre_number = 2
-    elif pre_ans_str == '63빌딩':
-        pre_number = 3
-    elif pre_ans_str == '탑골공원팔각정':
-        pre_number = 4
-    elif pre_ans_str == '독립문':
-        pre_number = 5
-    elif pre_ans_str == '남산타워':
-        pre_number = 6
-    elif pre_ans_str == '롯데타워':
-        pre_number = 7
-    elif pre_ans_str == '코엑스':
-        pre_number = 8
-    elif pre_ans_str == '서대문형무소':
-        pre_number = 9
-    elif pre_ans_str == '구서울역':
-        pre_number = 10
-
-
-    landmark = Landmarks.objects.values('name', 'lat', 'lng')
-    landmark_lat = landmark[pre_number]['lat']
-    landmark_lng = landmark[pre_number]['lng']
-    landmark_latlng = landmark_lat, landmark_lng
-    ###########################################################
-
-    restaurant = Restaurants.objects.values('name', 'represent', 'address', 'lat', 'lng')
-
-    distance_res = []
-    for count, value in enumerate(restaurant):
-        restaurant_lat = restaurant[count]['lat']
-        restaurant_lng = restaurant[count]['lng']
-        restaurant_latlng = restaurant_lat, restaurant_lng
-        d = haversine(landmark_latlng, restaurant_latlng, unit='km')
-        distance_res.append((d, restaurant[count]['name'], restaurant[count]['lat'],\
-                            restaurant[count]['lng'], restaurant[count]['address'], restaurant[count]['represent']))
-
-    distance_res = sorted(distance_res, key=lambda x: x[0])
-    n = 10
-    distance_res_final = distance_res[:n]
-
-    new_dict = {}
-
-    for i in range(len(distance_res_final)):
-        new_dict[distance_res_final[i][1]] = ( distance_res_final[i][2],distance_res_final[i][3], \
-                                               distance_res_final[i][4], distance_res_final[i][5],distance_res_final[i][0])
-
-    return HttpResponse(simplejson.dumps(new_dict))

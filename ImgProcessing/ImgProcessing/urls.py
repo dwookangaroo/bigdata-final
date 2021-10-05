@@ -24,7 +24,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
-from ImgAnal import views
+from ImgAnal import views, test_views
 
 urlpatterns = [
     path('img_processing/', views.image_upload_view, name='img_process'),
@@ -36,6 +36,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('upload/', views.ImageCreateAPIView.as_view(), name='upload'),
+    path('hotel/', views.hotel_recommendation, name='hotel'),
+    path('restaurant/', views.restaurant_recommendation, name='restaurant')
 ]
 
 
