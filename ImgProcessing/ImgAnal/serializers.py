@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import Addresses, MyImage, Landmarks, Restaurants, Hotels
+from .models import Addresses, Landmarks, Hotels, Restaurants, MyImage
 
 
 class AddressesSerializer(serializers.ModelSerializer):
@@ -18,16 +18,16 @@ class ImageSerializer(serializers.ModelSerializer):
 class LandmarksSerializer(serializers.ModelSerializer):
     class Meta:
         model = Landmarks
-        fields = ['name', 'desc', 'address', 'lat', 'lng']
+        fields = ['name', 'lat', 'lng', 'english_name']
 
 
 class HotelsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hotels
-        fields = ['rating','name', 'address', 'lat', 'lng']
+        fields = ['rating','name', 'address', 'lat', 'lng','english_rating','english_name','english_address']
 
 
 class RestaurantsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurants
-        fields = ['name', 'address', 'lat', 'lng']
+        fields = ['name','representative', 'address', 'lat', 'lng','english_name','english_representative','english_address']

@@ -12,10 +12,9 @@ class MyImage(models.Model):
 
 class Landmarks(models.Model):
     name = models.CharField(max_length=255)
-    #desc = models.TextField()
-    #address = models.CharField(max_length=10, default='')
     lat = models.FloatField()
     lng = models.FloatField()
+    english_name = models.CharField(default = '',max_length=255)
 
 
 class Hotels(models.Model):
@@ -24,6 +23,9 @@ class Hotels(models.Model):
     address = models.CharField(max_length=255)
     lat = models.FloatField()
     lng = models.FloatField()
+    english_rating = models.CharField(default = '',max_length=255)
+    english_name = models.CharField(default = '',max_length=255)
+    english_address = models.CharField(default = '',max_length=255)
 
 
 class Restaurants(models.Model):
@@ -32,9 +34,12 @@ class Restaurants(models.Model):
     address = models.CharField(max_length=255)
     lat = models.FloatField()
     lng = models.FloatField()
+    english_name = models.CharField(default = '',max_length=255)
+    english_represent = models.CharField(default = '',max_length=255)
+    english_address = models.CharField(default = '',max_length=255)
 
-
-
+#
+#
 class Addresses(models.Model):
     objects = None
     name = models.CharField(max_length=10)

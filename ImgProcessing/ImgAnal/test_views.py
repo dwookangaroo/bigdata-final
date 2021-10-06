@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .forms import ImageForm
-from .models import Addresses, MyImage, Landmarks
+from .models import Addresses, MyImage
 from .serializers import AddressesSerializer, ImageSerializer
 from rest_framework.parsers import JSONParser
 from django.contrib.auth import authenticate

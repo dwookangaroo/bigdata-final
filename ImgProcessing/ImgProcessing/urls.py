@@ -24,7 +24,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
-from ImgAnal import views, test_views
+from ImgAnal import views
 
 urlpatterns = [
     path('img_processing/', views.image_upload_view, name='img_process'),

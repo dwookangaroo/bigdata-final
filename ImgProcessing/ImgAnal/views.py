@@ -15,8 +15,7 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .forms import ImageForm
-from .models import Addresses, MyImage, Landmarks, Restaurants, Hotels
+from .models import Addresses, Landmarks, Hotels, Restaurants, MyImage
 from .serializers import AddressesSerializer, ImageSerializer
 from rest_framework.parsers import JSONParser
 from django.contrib.auth import authenticate
@@ -273,13 +272,14 @@ def hotel_recommendation(request):
         pre_number = 10
 
 
-    landmark = Landmarks.objects.values('name', 'lat', 'lng')
+    landmark = Landmarks.objects.values('name', 'lat', 'lng','english_name')
     landmark_lat = landmark[pre_number]['lat']
     landmark_lng = landmark[pre_number]['lng']
     landmark_latlng = landmark_lat, landmark_lng
 ######################################################################
 
-    hotel = Hotels.objects.values('rating', 'name', 'address', 'lat', 'lng')
+    hotel = Hotels.objects.values('rating', 'name', 'address', 'lat', 'lng',\
+                                  'english_rating','english_name','english_address')
 
     distance_hot = []
     for count, value in enumerate(hotel):
@@ -288,7 +288,8 @@ def hotel_recommendation(request):
         hotel_latlng = hotel_lat, hotel_lng
         d = haversine(landmark_latlng, hotel_latlng, unit='km')
         distance_hot.append((d, hotel[count]['name'], hotel[count]['lat'],
-                            hotel[count]['lng'], hotel[count]['address'], hotel[count]['rating']))
+                            hotel[count]['lng'], hotel[count]['address'], hotel[count]['rating'],
+                             hotel[count]['english_name'], hotel[count]['english_address'], hotel[count]['english_rating']))
 
     distance_hot = sorted(distance_hot, key=lambda x:x[0])
     n = 5
@@ -299,7 +300,9 @@ def hotel_recommendation(request):
     for i in range(len(distance_hot_final)):
         new_dict[i] =  [distance_hot_final[i][1], distance_hot_final[i][2],\
                         distance_hot_final[i][3], distance_hot_final[i][4],\
-                        distance_hot_final[i][5], distance_hot_final[i][0]]
+                        distance_hot_final[i][5], distance_hot_final[i][6],\
+                        distance_hot_final[i][7], distance_hot_final[i][8],\
+                        distance_hot_final[i][0]]
 
 
     return HttpResponse(simplejson.dumps(new_dict))
@@ -339,7 +342,8 @@ def restaurant_recommendation(request):
     landmark_latlng = landmark_lat, landmark_lng
     ###########################################################
 
-    restaurant = Restaurants.objects.values('name', 'represent', 'address', 'lat', 'lng')
+    restaurant = Restaurants.objects.values('name', 'represent', 'address', 'lat', 'lng',\
+                                            'english_name','english_represent','english_address')
 
     distance_res = []
     for count, value in enumerate(restaurant):
@@ -348,7 +352,9 @@ def restaurant_recommendation(request):
         restaurant_latlng = restaurant_lat, restaurant_lng
         d = haversine(landmark_latlng, restaurant_latlng, unit='km')
         distance_res.append((d, restaurant[count]['name'], restaurant[count]['lat'],\
-                            restaurant[count]['lng'], restaurant[count]['address'], restaurant[count]['represent']))
+                            restaurant[count]['lng'], restaurant[count]['address'], restaurant[count]['represent'],
+                             restaurant[count]['english_name'], restaurant[count]['english_address'],
+                             restaurant[count]['english_represent']))
 
     distance_res = sorted(distance_res, key=lambda x: x[0])
     n = 10
@@ -357,7 +363,10 @@ def restaurant_recommendation(request):
     new_dict = {}
 
     for i in range(len(distance_res_final)):
-        new_dict[distance_res_final[i][1]] = ( distance_res_final[i][2],distance_res_final[i][3], \
-                                               distance_res_final[i][4], distance_res_final[i][5],distance_res_final[i][0])
+        new_dict[i] =  [distance_res_final[i][1], distance_res_final[i][2],\
+                        distance_res_final[i][3], distance_res_final[i][4],\
+                        distance_res_final[i][5], distance_res_final[i][6],\
+                        distance_res_final[i][7], distance_res_final[i][8],\
+                        distance_res_final[i][0]]
 
     return HttpResponse(simplejson.dumps(new_dict))
