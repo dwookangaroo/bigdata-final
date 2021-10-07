@@ -279,7 +279,7 @@ def hotel_recommendation(request):
 ######################################################################
 
     hotel = Hotels.objects.values('rating', 'name', 'address', 'lat', 'lng',\
-                                  'english_rating','english_name','english_address')
+                                  'english_rating','english_name','english_address','picture_name')
 
     distance_hot = []
     for count, value in enumerate(hotel):
@@ -287,9 +287,10 @@ def hotel_recommendation(request):
         hotel_lng = hotel[count]['lng']
         hotel_latlng = hotel_lat, hotel_lng
         d = haversine(landmark_latlng, hotel_latlng, unit='km')
-        distance_hot.append((d, hotel[count]['name'], hotel[count]['lat'],
+        distance_hot.append([d, hotel[count]['name'], hotel[count]['lat'],
                             hotel[count]['lng'], hotel[count]['address'], hotel[count]['rating'],
-                             hotel[count]['english_name'], hotel[count]['english_address'], hotel[count]['english_rating']))
+                             hotel[count]['english_name'], hotel[count]['english_address'],
+                             hotel[count]['english_rating'],hotel[count]['picture_name']])
 
     distance_hot = sorted(distance_hot, key=lambda x:x[0])
     n = 5
@@ -302,7 +303,7 @@ def hotel_recommendation(request):
                         distance_hot_final[i][3], distance_hot_final[i][4],\
                         distance_hot_final[i][5], distance_hot_final[i][6],\
                         distance_hot_final[i][7], distance_hot_final[i][8],\
-                        distance_hot_final[i][0]]
+                        distance_hot_final[i][9], distance_hot_final[i][0]]
 
 
     return HttpResponse(simplejson.dumps(new_dict))
@@ -343,7 +344,7 @@ def restaurant_recommendation(request):
     ###########################################################
 
     restaurant = Restaurants.objects.values('name', 'represent', 'address', 'lat', 'lng',\
-                                            'english_name','english_represent','english_address')
+                                            'english_name','english_represent','english_address','picture_name')
 
     distance_res = []
     for count, value in enumerate(restaurant):
@@ -351,10 +352,10 @@ def restaurant_recommendation(request):
         restaurant_lng = restaurant[count]['lng']
         restaurant_latlng = restaurant_lat, restaurant_lng
         d = haversine(landmark_latlng, restaurant_latlng, unit='km')
-        distance_res.append((d, restaurant[count]['name'], restaurant[count]['lat'],\
+        distance_res.append([d, restaurant[count]['name'], restaurant[count]['lat'],\
                             restaurant[count]['lng'], restaurant[count]['address'], restaurant[count]['represent'],
                              restaurant[count]['english_name'], restaurant[count]['english_address'],
-                             restaurant[count]['english_represent']))
+                             restaurant[count]['english_represent'],restaurant[count]['picture_name']])
 
     distance_res = sorted(distance_res, key=lambda x: x[0])
     n = 10
@@ -367,6 +368,6 @@ def restaurant_recommendation(request):
                         distance_res_final[i][3], distance_res_final[i][4],\
                         distance_res_final[i][5], distance_res_final[i][6],\
                         distance_res_final[i][7], distance_res_final[i][8],\
-                        distance_res_final[i][0]]
+                        distance_res_final[i][9], distance_res_final[i][0]]
 
     return HttpResponse(simplejson.dumps(new_dict))

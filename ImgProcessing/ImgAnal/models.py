@@ -26,6 +26,7 @@ class Hotels(models.Model):
     english_rating = models.CharField(default = '',max_length=255)
     english_name = models.CharField(default = '',max_length=255)
     english_address = models.CharField(default = '',max_length=255)
+    picture_name = models.CharField(default='', max_length=255)
 
 
 class Restaurants(models.Model):
@@ -37,6 +38,7 @@ class Restaurants(models.Model):
     english_name = models.CharField(default = '',max_length=255)
     english_represent = models.CharField(default = '',max_length=255)
     english_address = models.CharField(default = '',max_length=255)
+    picture_name = models.CharField(default='', max_length=255)
 
 #
 #
