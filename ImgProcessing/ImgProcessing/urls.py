@@ -37,7 +37,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('upload/', views.ImageCreateAPIView.as_view(), name='upload'),
     path('hotel/', views.hotel_recommendation, name='hotel'),
-    path('restaurant/', views.restaurant_recommendation, name='restaurant')
+    path('restaurant/', views.restaurant_recommendation, name='restaurant'),
+    path('landmark/', views.landmark_information, name='landmark')
 ]
 
 

@@ -371,3 +371,43 @@ def restaurant_recommendation(request):
                         distance_res_final[i][9], distance_res_final[i][0]]
 
     return HttpResponse(simplejson.dumps(new_dict))
+
+
+def landmark_information(request):
+    global pre_number
+    global pre_ans_str
+    if pre_ans_str == '경복궁':
+        pre_number = 0
+    elif pre_ans_str == '명동성당':
+        pre_number = 1
+    elif pre_ans_str == '이순신동상':
+        pre_number = 2
+    elif pre_ans_str == '63빌딩':
+        pre_number = 3
+    elif pre_ans_str == '탑골공원팔각정':
+        pre_number = 4
+    elif pre_ans_str == '독립문':
+        pre_number = 5
+    elif pre_ans_str == '남산타워':
+        pre_number = 6
+    elif pre_ans_str == '롯데타워':
+        pre_number = 7
+    elif pre_ans_str == '코엑스':
+        pre_number = 8
+    elif pre_ans_str == '서대문형무소':
+        pre_number = 9
+    elif pre_ans_str == '구서울역':
+        pre_number = 10
+
+    landmark = Landmarks.objects.values('name', 'lat', 'lng', 'english_name')
+    landmark_name = landmark[pre_number]['name']
+    landmark_lat = landmark[pre_number]['lat']
+    landmark_lng = landmark[pre_number]['lng']
+    landmark_english_name = landmark[pre_number]['english_name']
+
+    result_dict = {}
+
+    result_dict['landmark'] = [landmark_name,landmark_lat,landmark_lng,landmark_english_name]
+
+    return HttpResponse(simplejson.dumps(result_dict))
+
