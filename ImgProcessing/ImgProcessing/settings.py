@@ -26,7 +26,7 @@ SECRET_KEY = 'a@#!tybj6-(o$ac9$5obp5^51=il&34^x8a#rgem45qv!)1shw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -134,5 +134,9 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'ImgAnal','static')
 ]
 STATIC_ROOT= os.path.join(BASE_DIR,'static')
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+

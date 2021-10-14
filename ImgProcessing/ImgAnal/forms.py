@@ -1,5 +1,6 @@
 from django import forms
-from .models import Image
+
+from ImgAnal.models import Image
 
 
 class ImageForm(forms.ModelForm):
