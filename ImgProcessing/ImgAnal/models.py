@@ -15,6 +15,8 @@ class Landmarks(models.Model):
     lat = models.FloatField()
     lng = models.FloatField()
     english_name = models.CharField(default = '',max_length=255)
+    kor_desc = models.TextField(default='', max_length=600)
+    eng_desc = models.TextField(default='', max_length=600)
 
 
 class Hotels(models.Model):

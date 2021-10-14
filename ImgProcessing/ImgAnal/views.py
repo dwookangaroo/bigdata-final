@@ -399,15 +399,21 @@ def landmark_information(request):
     elif pre_ans_str == '구서울역':
         pre_number = 10
 
-    landmark = Landmarks.objects.values('name', 'lat', 'lng', 'english_name')
+    landmark = Landmarks.objects.values('name', 'lat', 'lng', 'english_name','eng_desc','kor_desc')
     landmark_name = landmark[pre_number]['name']
     landmark_lat = landmark[pre_number]['lat']
     landmark_lng = landmark[pre_number]['lng']
     landmark_english_name = landmark[pre_number]['english_name']
+    landmark_english_desc = landmark[pre_number]['eng_desc']
+    landmark_desc = landmark[pre_number]['kor_desc']
+
+    landmark_english_desc = landmark_english_desc.replace(",","#")
+    landmark_desc = landmark_desc.replace(",", "#")
 
     result_dict = {}
 
-    result_dict['landmark'] = [landmark_name,landmark_lat,landmark_lng,landmark_english_name]
+    result_dict['landmark'] = [landmark_name,landmark_lat,landmark_lng,landmark_english_name,\
+                               landmark_desc,landmark_english_desc]
 
     return HttpResponse(simplejson.dumps(result_dict))
 
