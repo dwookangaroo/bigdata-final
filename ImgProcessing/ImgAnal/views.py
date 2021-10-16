@@ -279,7 +279,8 @@ def hotel_recommendation(request):
 ######################################################################
 
     hotel = Hotels.objects.values('rating', 'name', 'address', 'lat', 'lng',\
-                                  'english_rating','english_name','english_address','picture_name')
+                                  'english_rating','english_name','english_address','picture_name',
+                                  'star_rate','telephone_number')
 
     distance_hot = []
     for count, value in enumerate(hotel):
@@ -290,7 +291,8 @@ def hotel_recommendation(request):
         distance_hot.append([d, hotel[count]['name'], hotel[count]['lat'],
                             hotel[count]['lng'], hotel[count]['address'], hotel[count]['rating'],
                              hotel[count]['english_name'], hotel[count]['english_address'],
-                             hotel[count]['english_rating'],hotel[count]['picture_name']])
+                             hotel[count]['english_rating'],hotel[count]['picture_name'],
+                             hotel[count]['star_rate'],hotel[count]['telephone_number']])
 
     distance_hot = sorted(distance_hot, key=lambda x:x[0])
     n = 5
@@ -299,11 +301,15 @@ def hotel_recommendation(request):
     new_dict = {}
 
     for i in range(len(distance_hot_final)):
+        new_english_address = distance_hot_final[i][7]
+        new_english_address = new_english_address.replace(",", "#")
+
         new_dict[i] =  [distance_hot_final[i][1], distance_hot_final[i][2],\
                         distance_hot_final[i][3], distance_hot_final[i][4],\
                         distance_hot_final[i][5], distance_hot_final[i][6],\
-                        distance_hot_final[i][7], distance_hot_final[i][8],\
-                        distance_hot_final[i][9], distance_hot_final[i][0]]
+                        new_english_address, distance_hot_final[i][8],\
+                        distance_hot_final[i][9], distance_hot_final[i][10],\
+                        distance_hot_final[i][11], distance_hot_final[i][0]]
 
 
     return HttpResponse(simplejson.dumps(new_dict))
@@ -344,7 +350,9 @@ def restaurant_recommendation(request):
     ###########################################################
 
     restaurant = Restaurants.objects.values('name', 'represent', 'address', 'lat', 'lng',\
-                                            'english_name','english_represent','english_address','picture_name')
+                                            'english_name','english_represent','english_address','picture_name',\
+                                            'operation_time','service_option','star_rate','telephone_number',\
+                                            'english_operation_time','english_service_option')
 
     distance_res = []
     for count, value in enumerate(restaurant):
@@ -355,20 +363,44 @@ def restaurant_recommendation(request):
         distance_res.append([d, restaurant[count]['name'], restaurant[count]['lat'],\
                             restaurant[count]['lng'], restaurant[count]['address'], restaurant[count]['represent'],
                              restaurant[count]['english_name'], restaurant[count]['english_address'],
-                             restaurant[count]['english_represent'],restaurant[count]['picture_name']])
+                             restaurant[count]['english_represent'],restaurant[count]['picture_name'],
+                             restaurant[count]['operation_time'],restaurant[count]['service_option'],
+                             restaurant[count]['star_rate'],restaurant[count]['telephone_number'],
+                             restaurant[count]['english_operation_time'],restaurant[count]['english_service_option']])
 
     distance_res = sorted(distance_res, key=lambda x: x[0])
     n = 10
     distance_res_final = distance_res[:n]
 
+
     new_dict = {}
 
     for i in range(len(distance_res_final)):
+        new_english_address = distance_res_final[i][7]
+        new_english_address = new_english_address.replace(",", "#")
+
+        new_operation = distance_res_final[i][10]
+        new_operation = new_operation.replace(",", "#")
+
+        new_option = distance_res_final[i][11]
+        new_option = new_option.replace(",", "#")
+
+        new_english_operation = distance_res_final[i][14]
+        new_english_operation = new_english_operation.replace(",", "#")
+
+        new_english_option = distance_res_final[i][15]
+        new_english_option = new_english_option.replace(",", "#")
+
+
+
         new_dict[i] =  [distance_res_final[i][1], distance_res_final[i][2],\
                         distance_res_final[i][3], distance_res_final[i][4],\
                         distance_res_final[i][5], distance_res_final[i][6],\
-                        distance_res_final[i][7], distance_res_final[i][8],\
-                        distance_res_final[i][9], distance_res_final[i][0]]
+                        new_english_address, distance_res_final[i][8],\
+                        distance_res_final[i][9], new_operation,\
+                        new_option, distance_res_final[i][12],\
+                        distance_res_final[i][13], new_english_operation,\
+                        new_english_option, distance_res_final[i][0]]
 
     return HttpResponse(simplejson.dumps(new_dict))
 

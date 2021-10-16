@@ -29,6 +29,8 @@ class Hotels(models.Model):
     english_name = models.CharField(default = '',max_length=255)
     english_address = models.CharField(default = '',max_length=255)
     picture_name = models.CharField(default='', max_length=255)
+    star_rate = models.FloatField(default=0.0)
+    telephone_number = models.CharField(default = '',max_length=255)
 
 
 class Restaurants(models.Model):
@@ -41,6 +43,12 @@ class Restaurants(models.Model):
     english_represent = models.CharField(default = '',max_length=255)
     english_address = models.CharField(default = '',max_length=255)
     picture_name = models.CharField(default='', max_length=255)
+    service_option = models.CharField(default='', max_length=255)
+    star_rate = models.FloatField(default=0.0)
+    operation_time = models.CharField(default = '',max_length=255)
+    telephone_number = models.CharField(default = '',max_length=255)
+    english_service_option = models.CharField(default='', max_length=255)
+    english_operation_time = models.CharField(default='', max_length=255)
 
 #
 #
