@@ -38,7 +38,8 @@ urlpatterns = [
     path('upload/', views.ImageCreateAPIView.as_view(), name='upload'),
     path('hotel/', views.hotel_recommendation, name='hotel'),
     path('restaurant/', views.restaurant_recommendation, name='restaurant'),
-    path('landmark/', views.landmark_information, name='landmark')
+    path('landmark/', views.landmark_information, name='landmark'),
+    path('seoul_landmarks/', views.landmark_seoul, name='seoul_landmarks')
 ]
 
 

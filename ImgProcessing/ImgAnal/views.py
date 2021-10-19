@@ -29,7 +29,8 @@ from haversine import haversine
 
 # caltech_dir = "D:/bigdata_project/ImgProcessing/static/final_test"
 pre_ans_str=''
-pre_number = 0
+pre_number = 100
+landmark_value = 0
 new_model = load_model('model/trained_model.h5')
 
 conn = pymysql.connect(host="localhost",  # ex) '127.0.0.1'
@@ -47,6 +48,8 @@ class ImageCreateAPIView(CreateAPIView):
 
 def image_upload_view(request):
     global pre_ans_str
+    global landmark_value
+    landmark_value = 0
     """Process images uploaded by users"""
     # if request.method == 'POST':
     #     form = ImageForm(request.POST, request.FILES)
@@ -67,32 +70,34 @@ def image_upload_view(request):
 
     X = np.array(X)
     new_prediction = new_model.predict(X)
-    pre_ans = new_prediction[0].argmax()  # 예측 레이블
+    pre_ans = new_prediction[0].argmax()  # 예측  레이블
 
-    if pre_ans == 0:
-        pre_ans_str = "63빌딩"
-    elif pre_ans == 1:
-        pre_ans_str = "명동성당"
-    elif pre_ans == 2:
-        pre_ans_str = "코엑스"
-    elif pre_ans == 3:
-        pre_ans_str = "이순신동상"
-    elif pre_ans == 4:
-        pre_ans_str = "독립문"
-    elif pre_ans == 5:
-        pre_ans_str = "서대문형무소"
-    elif pre_ans == 6:
-        pre_ans_str = "롯데타워"
-    elif pre_ans == 7:
-        pre_ans_str = "경복궁"
-    elif pre_ans == 8:
-        pre_ans_str = "남산타워"
-    elif pre_ans == 9:
-        pre_ans_str = "구서울역"
-    elif pre_ans == 10:
-        pre_ans_str = "탑골공원팔각정"
+    if(new_prediction[0][pre_ans])>10:
+        if pre_ans == 0:
+            pre_ans_str = "63빌딩"
+        elif pre_ans == 1:
+            pre_ans_str = "명동성당"
+        elif pre_ans == 2:
+            pre_ans_str = "코엑스"
+        elif pre_ans == 3:
+            pre_ans_str = "이순신동상"
+        elif pre_ans == 4:
+            pre_ans_str = "독립문"
+        elif pre_ans == 5:
+            pre_ans_str = "서대문형무소"
+        elif pre_ans == 6:
+            pre_ans_str = "롯데타워"
+        elif pre_ans == 7:
+            pre_ans_str = "경복궁"
+        elif pre_ans == 8:
+            pre_ans_str = "남산타워"
+        elif pre_ans == 9:
+            pre_ans_str = "구서울역"
+        elif pre_ans == 10:
+            pre_ans_str = "탑골공원팔각정"
     else:
         pre_ans_str = "what the!!"
+        landmark_value = new_prediction[0][pre_ans]
 
     if os.path.exists(file):
         os.remove(r'D:\bigdata_project\ImgProcessing\media\media\images\testFile.jpg')
@@ -248,6 +253,8 @@ def app_register(request):
 def hotel_recommendation(request):
     global pre_number
     global pre_ans_str
+
+
     if pre_ans_str == '경복궁':
         pre_number = 0
     elif pre_ans_str == '명동성당':
@@ -312,6 +319,7 @@ def hotel_recommendation(request):
                         distance_hot_final[i][11], distance_hot_final[i][0]]
 
 
+
     return HttpResponse(simplejson.dumps(new_dict))
 
 
@@ -323,7 +331,7 @@ def restaurant_recommendation(request):
         pre_number = 0
     elif pre_ans_str == '명동성당':
         pre_number = 1
-    elif pre_ans_str == '이순신 동상':
+    elif pre_ans_str == '이순신동상':
         pre_number = 2
     elif pre_ans_str == '63빌딩':
         pre_number = 3
@@ -408,44 +416,77 @@ def restaurant_recommendation(request):
 def landmark_information(request):
     global pre_number
     global pre_ans_str
-    if pre_ans_str == '경복궁':
-        pre_number = 0
-    elif pre_ans_str == '명동성당':
-        pre_number = 1
-    elif pre_ans_str == '이순신동상':
-        pre_number = 2
-    elif pre_ans_str == '63빌딩':
-        pre_number = 3
-    elif pre_ans_str == '탑골공원팔각정':
-        pre_number = 4
-    elif pre_ans_str == '독립문':
-        pre_number = 5
-    elif pre_ans_str == '남산타워':
-        pre_number = 6
-    elif pre_ans_str == '롯데타워':
-        pre_number = 7
-    elif pre_ans_str == '코엑스':
-        pre_number = 8
-    elif pre_ans_str == '서대문형무소':
-        pre_number = 9
-    elif pre_ans_str == '구서울역':
-        pre_number = 10
+    global landmark_value
 
-    landmark = Landmarks.objects.values('name', 'lat', 'lng', 'english_name','eng_desc','kor_desc')
-    landmark_name = landmark[pre_number]['name']
-    landmark_lat = landmark[pre_number]['lat']
-    landmark_lng = landmark[pre_number]['lng']
-    landmark_english_name = landmark[pre_number]['english_name']
-    landmark_english_desc = landmark[pre_number]['eng_desc']
-    landmark_desc = landmark[pre_number]['kor_desc']
 
-    landmark_english_desc = landmark_english_desc.replace(",","#")
-    landmark_desc = landmark_desc.replace(",", "#")
 
-    result_dict = {}
+    if landmark_value==0:
+        if pre_ans_str == '경복궁':
+            pre_number = 0
+        elif pre_ans_str == '명동성당':
+            pre_number = 1
+        elif pre_ans_str == '이순신동상':
+            pre_number = 2
+        elif pre_ans_str == '63빌딩':
+            pre_number = 3
+        elif pre_ans_str == '탑골공원팔각정':
+            pre_number = 4
+        elif pre_ans_str == '독립문':
+            pre_number = 5
+        elif pre_ans_str == '남산타워':
+            pre_number = 6
+        elif pre_ans_str == '롯데타워':
+            pre_number = 7
+        elif pre_ans_str == '코엑스':
+            pre_number = 8
+        elif pre_ans_str == '서대문형무소':
+            pre_number = 9
+        elif pre_ans_str == '구서울역':
+            pre_number = 10
 
-    result_dict['landmark'] = [landmark_name,landmark_lat,landmark_lng,landmark_english_name,\
-                               landmark_desc,landmark_english_desc]
+        landmark = Landmarks.objects.values('name', 'lat', 'lng', 'english_name','eng_desc','kor_desc')
+
+        landmark_name = landmark[pre_number]['name']
+        landmark_lat = landmark[pre_number]['lat']
+        landmark_lng = landmark[pre_number]['lng']
+        landmark_english_name = landmark[pre_number]['english_name']
+        landmark_english_desc = landmark[pre_number]['eng_desc']
+        landmark_desc = landmark[pre_number]['kor_desc']
+
+        landmark_english_desc = landmark_english_desc.replace(",","#")
+        landmark_desc = landmark_desc.replace(",", "#")
+
+        result_dict = {}
+        result_dict['landmark'] = [landmark_name,landmark_lat,landmark_lng,landmark_english_name,\
+                                   landmark_desc,landmark_english_desc]
+
+
+    else:
+        result_dict = {}
+        result_dict['landmark'] = ["what???",1.0,1.0,"what???",\
+                                   "picture error!!!","picture error!!!"]
 
     return HttpResponse(simplejson.dumps(result_dict))
+
+
+def landmark_seoul(request):
+    landmarks = Landmarks.objects.values('name', 'lat', 'lng','english_name')
+    landmark_dict = {}
+    for i in range(11):
+        name = landmarks[i]['name']
+        lat = landmarks[i]['lat']
+        lng = landmarks[i]['lng']
+        english_name = landmarks[i]['english_name']
+        landmark_dict[i]=[name,lat,lng,english_name]
+
+
+    return HttpResponse(simplejson.dumps(landmark_dict))
+
+
+
+
+
+
+
+
 
