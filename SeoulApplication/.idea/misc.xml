@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable-v24/button_color_drawable.xml" value="0.13125" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable-v24/button_pressed_false.xml" value="0.13125" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable-v24/button_pressed_true.xml" value="0.13125" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable-v24/category_camera.xml" value="0.13125" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable-v24/detail_map.xml" value="0.13125" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable/button_color_drawable.xml" value="0.13125" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable/button_pressed_true.xml" value="0.13125" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable/category_camera.xml" value="0.13125" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable/ic_sharp_subdirectory_arrow_right_24.xml" value="0.26564102564102565" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable/ic_sharp_subdirectory_arrow_right_gray_24.xml" value="0.26564102564102565" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable/information_icon.xml" value="0.26564102564102565" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable/loading.xml" value="0.26564102564102565" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/drawable/rectangle_bgwhite_corner_radius_all.xml" value="0.12291666666666666" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_anotherinformation.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_app_start.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_baduser.xml" value="0.1078125" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_camera.xml" value="0.264" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_camera_copy.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_firebase.xml" value="0.136" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_information.xml" value="0.1" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_loading.xml" value="0.1078125" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_loading_frame.xml" value="0.22604166666666667" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_location_search.xml" value="0.176" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_maps.xml" value="0.11510416666666666" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_register.xml" value="0.11510416666666666" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_set_language.xml" value="0.109375" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_splash.xml" value="0.109375" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/activity_user.xml" value="0.10729166666666666" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/dialog_loading.xml" value="0.264" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/fragment_home.xml" value="0.1296875" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/fragment_user.xml" value="0.1296875" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/frame_loading.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/lemon/AndroidStudioProjects/Seoul Application/SeoulApplication/app/src/main/res/layout/progress_loading.xml" value="0.10677083333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
