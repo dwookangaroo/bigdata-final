@@ -29,7 +29,7 @@ from haversine import haversine
 
 # caltech_dir = "D:/bigdata_project/ImgProcessing/static/final_test"
 pre_ans_str=''
-pre_number = 100
+pre_number = 0
 landmark_value = 0
 new_model = load_model('model/trained_model.h5')
 
@@ -417,8 +417,6 @@ def landmark_information(request):
     global pre_number
     global pre_ans_str
     global landmark_value
-
-
 
     if landmark_value==0:
         if pre_ans_str == '경복궁':
