@@ -421,6 +421,8 @@ class CameraActivity : AppCompatActivity() {
     private fun uploadPhoto() {
         //커서 사용해서 경로 확인
         val imagePath = result
+        println(imagePath)
+        println("이미지 경로 알려주셈")
 
         var src: Bitmap = BitmapFactory.decodeFile(imagePath)
         var resized: Bitmap = Bitmap.createScaledBitmap(src, 224, 224, true)
@@ -434,6 +436,7 @@ class CameraActivity : AppCompatActivity() {
             val fileName = "$name.jpg"
             val imgFile = File(storage, fileName)
             try {
+
                 imgFile.createNewFile()
                 val out = FileOutputStream(imgFile)
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out) //퀄리티를 최대로
@@ -449,6 +452,9 @@ class CameraActivity : AppCompatActivity() {
 
         val imageFile = File(saveBitmapToJpg(resized, "testFile"))
 //        val imageFile = File(imagePath)
+
+        println(imageFile.toString())
+        println("이미지 파일 알려줘라")
 
         val retrofit = Retrofit.Builder()
             .baseUrl(CameraService.DJANGO_SITE)

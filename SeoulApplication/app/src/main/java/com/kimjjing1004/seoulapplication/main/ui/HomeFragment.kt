@@ -20,14 +20,14 @@ class HomeFragment : Fragment() {
         if (language == "EnglishData") {
             english = language
             korea = ""
-            intent.putExtra("EnglishKey", "EnglishData")
+            intent.putExtra("English", "EnglishData")
         } else if (language == "KoreaData") {
             korea = language
             english = ""
-            intent.putExtra("KoreaKey", "KoreaData")
+            intent.putExtra("Korea", "KoreaData")
         } else {
             Toast.makeText(this@HomeFragment.context, "there isn't transferred name", Toast.LENGTH_SHORT).show()
         }
-//        startActivity(intent)
+        startActivity(intent)
     }
 }

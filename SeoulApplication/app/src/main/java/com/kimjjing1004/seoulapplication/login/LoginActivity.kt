@@ -3,18 +3,27 @@ package com.kimjjing1004.seoulapplication.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Gravity
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+//import com.facebook.AccessToken
+//import com.facebook.FacebookCallback
+//import com.facebook.FacebookException
+//import com.facebook.login.LoginManager
+//import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.kimjjing1004.seoulapplication.R
 import com.kimjjing1004.seoulapplication.databinding.ActivityLoginBinding
@@ -25,6 +34,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -109,6 +120,16 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
 
+        //        binding.facebookSignInBtn.setReadPermissions("email")
+//        binding.facebookSignInBtn.setOnClickListener {
+//            // begin Facebook SignIn
+//            btnchocie = "Facebook"
+//            facebookLogin()
+//            startActivity(Intent(this@LoginActivity, FirebaseActivity::class.java))
+//            finish()
+//        }
+
+        checkUser()
         // Google SignIn Button, Click to begin SignIn
         binding.googleSignInBtn.setOnClickListener {
             // begin Google SignIn
@@ -217,6 +238,55 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+//    private fun facebookLogin() {
+//        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email"))
+//        LoginManager.getInstance().logInWithPublishPermissions(this, Arrays.asList("public_profile"))
+//        LoginManager.getInstance().registerCallback(callbackManager, object :
+//            FacebookCallback<LoginResult> {
+//            override fun onSuccess(result: LoginResult?) {
+//                // 로그인 성공시 파이어베이스로 로그인 데이터를 넘겨줌
+//                handleFacebookAccessToken(result?.accessToken)
+//            }
+//
+//            override fun onCancel() {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onError(error: FacebookException?) {
+//                TODO("Not yet implemented")
+//            }
+//        })
+//    }
+//
+//    private fun handleFacebookAccessToken(token: AccessToken?) {
+//        val credential = FacebookAuthProvider.getCredential(token?.token!!)
+//        firebaseAuth.signInWithCredential(credential)
+//            .addOnCompleteListener {
+//                    task ->
+//                if (task.isSuccessful) {
+//                    // 아이디, 비밀번호 맞을 때
+//                    moveMainPage(task.result?.user)
+//                    Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+//                } else {
+//                    // 틀렸을 때
+//                    Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//    }
+//
+//    // 유저정보 넘겨주고 메인 액티비티 호출
+//    private fun moveMainPage(user: FirebaseUser?) {
+//        if (user != null) {
+//            Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                val intent = Intent(this@LoginActivity, FirebaseActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }, 3000)
+//        }
+//    }
+
+
     // (firebase)구글 로그인 구성2
     private fun checkUser() {
         // check if user is logged in or not
@@ -224,16 +294,16 @@ class LoginActivity : AppCompatActivity() {
         if (firebaseUser != null) {
             // user is already logged in
             // start profile activity
-                if(korea=="KoreaData"){
-                    val intent = Intent(this@LoginActivity, FirebaseActivity::class.java)
-                    intent.putExtra("KoreaKey", "KoreaData")
-                    startActivity(intent)
-                }
+            if(korea=="KoreaData"){
+                val intent = Intent(this@LoginActivity, FirebaseActivity::class.java)
+                intent.putExtra("KoreaKey", "KoreaData")
+                startActivity(intent)
+            }
             else if(english=="EnglishData") {
-                    val intent = Intent(this@LoginActivity, FirebaseActivity::class.java)
-                    intent.putExtra("EnglishKey", "EnglishData")
-                    startActivity(intent)
-                }
+                val intent = Intent(this@LoginActivity, FirebaseActivity::class.java)
+                intent.putExtra("EnglishKey", "EnglishData")
+                startActivity(intent)
+            }
 
             finish()
         }

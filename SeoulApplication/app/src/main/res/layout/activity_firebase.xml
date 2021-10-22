@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.FirebaseActivity">
+    tools:context=".login.FirebaseActivity"
+    android:background="@drawable/blue">
 
     <TextView
         android:id="@+id/textView"
@@ -13,6 +14,8 @@
         android:layout_height="wrap_content"
         android:text="You're Logged in as"
         android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +28,7 @@
         android:layout_height="wrap_content"
         android:text="Email"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +40,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_color_drawable"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/button_text_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTv"

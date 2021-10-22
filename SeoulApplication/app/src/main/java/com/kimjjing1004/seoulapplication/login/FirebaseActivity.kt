@@ -94,4 +94,6 @@ class FirebaseActivity : AppCompatActivity() {
             finish()
         }, 3000)
     }
+
+
 }
