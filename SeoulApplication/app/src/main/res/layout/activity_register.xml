@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:text="가입완료"
         android:layout_marginTop="70dp"
-        android:textColor="@color/white"
+        android:textColor="@color/button_text_selector"
         android:background="@drawable/button_pressed_false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

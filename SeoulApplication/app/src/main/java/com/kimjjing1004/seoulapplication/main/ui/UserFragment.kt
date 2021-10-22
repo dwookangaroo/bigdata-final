@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.kimjjing1004.seoulapplication.main.user.BadUserActivity
+import com.kimjjing1004.seoulapplication.main.user.UserActivity
 
 class UserFragment : Fragment() {
 
@@ -15,7 +15,7 @@ class UserFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val language = arguments?.getString("LanguageKey")
-        val intent = Intent (this@UserFragment.context, BadUserActivity::class.java)
+        val intent = Intent (this@UserFragment.context, UserActivity::class.java)
 
         if (language == "EnglishData") {
             english = language

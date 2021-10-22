@@ -46,29 +46,28 @@ class MapsActivity : FragmentActivity(), OnMyLocationButtonClickListener, OnMapC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMapsBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
 
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment!!.getMapAsync(this)
+            binding = ActivityMapsBinding.inflate(layoutInflater)
+            setContentView(binding!!.root)
+
+            val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.map) as SupportMapFragment?
+            mapFragment!!.getMapAsync(this)
+
+            if (intent.hasExtra("EnglishKey")) {
+                english = intent.getStringExtra("EnglishKey").toString()
+                korea = ""
+                println("아놔")
+
+            } else if (intent.hasExtra("KoreaKey")) {
+                korea = intent.getStringExtra("KoreaKey").toString()
+                english = ""
+                println("아놔")
 
 
-
-        if (intent.hasExtra("EnglishKey")) {
-            english = intent.getStringExtra("EnglishKey").toString()
-            korea = ""
-            println("아놔")
-
-        } else if (intent.hasExtra("KoreaKey")) {
-            korea = intent.getStringExtra("KoreaKey").toString()
-            english = ""
-            println("아놔")
-
-
-        } else {
-            Toast.makeText(this, "there isn't transferred name", Toast.LENGTH_SHORT).show()
-        }
+            } else {
+                Toast.makeText(this, "there isn't transferred name", Toast.LENGTH_SHORT).show()
+            }
 
             Thread {
                 value1 = getJson("http://192.168.1.33:8000/hotel")
@@ -85,11 +84,6 @@ class MapsActivity : FragmentActivity(), OnMyLocationButtonClickListener, OnMapC
                 }
             }.start()
         }
-
-
-
-
-
 
     private fun judgeString1() {
         val responseJSON = JSONObject(value1)

@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/iconIv2"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
         android:layout_centerHorizontal="true"
         android:text="로그인"
         android:textSize="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/button_text_selector"
         android:background="@drawable/button_color_drawable"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
         android:text="회원가입"
         android:textSize="20dp"
         android:orientation="vertical"
-        android:textColor="@color/white"
+        android:textColor="@color/button_text_selector"
         android:background="@drawable/button_color_drawable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -92,5 +92,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editPw"
         tools:context=".login.LoginActivity" />
+
+<!--    <com.facebook.login.widget.LoginButton-->
+<!--        android:id="@+id/facebookSignInBtn"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:paddingTop="11dp"-->
+<!--        android:paddingBottom="11dp"-->
+<!--        android:layout_marginHorizontal="55dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/googleSignInBtn"-->
+<!--        tools:context=".login.LoginActivity" />-->
+
+<!--    &lt;!&ndash;KakaoTalk SignIn Button&ndash;&gt;-->
+<!--    <ImageButton-->
+<!--        android:id="@+id/kakao_login_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:src="@drawable/kakao_login_medium_wide"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/facebookSignInBtn" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
