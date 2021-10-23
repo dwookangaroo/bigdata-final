@@ -33,12 +33,12 @@ class UserActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        if (intent.hasExtra("English")) {
-            english = intent.getStringExtra("English").toString()
+        if (intent.hasExtra("EnglishKey")) {
+            english = intent.getStringExtra("EnglishKey").toString()
             korea = ""
 
-        } else if (intent.hasExtra("Korea")) {
-            korea = intent.getStringExtra("Korea").toString()
+        } else if (intent.hasExtra("KoreaKey")) {
+            korea = intent.getStringExtra("KoreaKey").toString()
             english = ""
 
 
@@ -48,7 +48,7 @@ class UserActivity : AppCompatActivity() {
 
         Thread{
             val contents: MutableList<YouTubeContent> = ArrayList()
-            value = getJson( "http://192.168.1.33:8000/landmark")
+            value = getJson( "http://15.165.104.248:8000/landmark")
             Thread.sleep(100L)
                 landmarkValue = judgeString()
 

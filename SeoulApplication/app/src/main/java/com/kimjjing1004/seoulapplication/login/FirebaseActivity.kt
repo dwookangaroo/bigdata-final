@@ -31,9 +31,10 @@ class FirebaseActivity : AppCompatActivity() {
         } else if (intent.hasExtra("KoreaKey")) {
             korea = intent.getStringExtra("KoreaKey").toString()
             english=""
-        } else {
-            Toast.makeText(this, "there isn't transferred name", Toast.LENGTH_SHORT).show()
         }
+//        else {
+//            Toast.makeText(this, "there isn't transferred name", Toast.LENGTH_SHORT).show()
+//        }
 
         if (english=="EnglishData") {
             binding.textView.text = "You're Logged in as"
