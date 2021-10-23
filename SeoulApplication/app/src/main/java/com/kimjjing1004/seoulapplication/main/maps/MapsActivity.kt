@@ -70,10 +70,10 @@ class MapsActivity : FragmentActivity(), OnMyLocationButtonClickListener, OnMapC
             }
 
             Thread {
-                value1 = getJson("http://192.168.1.33:8000/hotel")
-                value2 = getJson("http://192.168.1.33:8000/restaurant")
+                value1 = getJson("http://15.165.104.248:8000/hotel")
+                value2 = getJson("http://15.165.104.248:8000/restaurant")
 //                value3 = getJson("http://192.168.1.33:8000/seoul_landmarks")
-                value4 = getJson("http://192.168.1.33:8000/landmark")
+                value4 = getJson("http://15.165.104.248:8000/landmark")
                 Thread.sleep(100L)
 
                 binding!!.root.post {

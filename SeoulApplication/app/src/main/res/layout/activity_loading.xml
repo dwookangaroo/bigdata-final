@@ -3,7 +3,20 @@
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
-android:layout_height="match_parent">
+android:layout_height="match_parent"
+    android:background="@drawable/blue">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/cameraScanning"
+        android:layout_width="170dp"
+        android:layout_height="600dp"
+        android:layout_marginEnd="68dp"
+        android:rotation="12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/camera_scanning"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/handleMobile"
@@ -13,19 +26,19 @@ android:layout_height="match_parent">
         app:layout_constraintEnd_toEndOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/camera_loading" />
+        app:lottie_rawRes="@raw/outline_handheld_mobile_photo" />
 
-    <TextView
-        android:id="@+id/loadDB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="이미지 인식중"
-        android:textColor="#212121"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/loadDB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="이미지 인식중"
+                android:textColor="#212121"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>

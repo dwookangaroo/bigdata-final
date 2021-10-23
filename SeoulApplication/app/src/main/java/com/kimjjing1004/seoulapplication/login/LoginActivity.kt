@@ -84,17 +84,44 @@ class LoginActivity : AppCompatActivity() {
         // 한국어, 영어 변환
         if (intent.hasExtra("EnglishKey")) {
             english = intent.getStringExtra("EnglishKey").toString()
-            korea=""
+            korea = ""
             /* "nameKey"라는 이름의 key에 저장된 값이 있다면
-               textView의 내용을 "nameKey" key에서 꺼내온 값으로 바꾼다 */
+//               textView의 내용을 "nameKey" key에서 꺼내온 값으로 바꾼다 */
+        }
 
-        } else if (intent.hasExtra("KoreaKey")) {
+
+//        else if(intent.hasExtra("English")) {
+//                english = intent.getStringExtra("English").toString()
+//                korea = ""
+//
+//        }
+//
+//
+//        else if (intent.hasExtra("EnglishRegister")) {
+//            korea = intent.getStringExtra("EnglishRegister").toString()
+//            english = ""
+//        }
+
+         else if (intent.hasExtra("KoreaKey")) {
             korea = intent.getStringExtra("KoreaKey").toString()
-            english=""
-            /* "nameKey"라는 이름의 key에 저장된 값이 있다면
-               textView의 내용을 "nameKey" key에서 꺼내온 값으로 바꾼다 */
+            english = ""
+        }
+        /* "nameKey"라는 이름의 key에 저장된 값이 있다면
+          textView의 내용을 "nameKey" key에서 꺼내온 값으로 바꾼다 */
 
-        } else {
+//        else if (intent.hasExtra("Korea")) {
+//            korea = intent.getStringExtra("Korea").toString()
+//            english = ""
+//        }
+//
+//        else if (intent.hasExtra("KoreaRegister")) {
+//            korea = intent.getStringExtra("KoreaRegister").toString()
+//            english = ""
+//        }
+
+
+
+        else {
             Toast.makeText(this, "there isn't transferred name", Toast.LENGTH_SHORT).show()
         }
 
@@ -139,7 +166,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.33:8000/")
+            .baseUrl("http://15.165.104.248:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val loginService: LoginService = retrofit.create(LoginService::class.java)

@@ -16,6 +16,6 @@ interface CameraService {
     ): Call<RequestBody?>? // 아웃풋을 정의하는 곳
 
     companion object {
-        const val DJANGO_SITE = "http://192.168.1.33:8000/"
+        const val DJANGO_SITE = "http://15.165.104.248:8000/"
     }
 }
