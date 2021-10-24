@@ -1,0 +1,6 @@
+com/example/mygooglemap/databinding/ActivityMapsBinding.java
+ com.example.mygooglemap.databinding.ActivityMapsBinding
+com/example/mygooglemap/MapsActivity.java
+ com.example.mygooglemap.MapsActivity
+com/example/mygooglemap/BuildConfig.java
+ com.example.mygooglemap.BuildConfig
