@@ -31,21 +31,25 @@ from haversine import haversine
 pre_ans_str=''
 pre_number = 0
 landmark_value = 0
+
+# load deeplearning model
 new_model = load_model('model/trained_model.h5')
 
-conn = pymysql.connect(host="localhost",  # ex) '127.0.0.1'
+conn = pymysql.connect(host="15.165.104.248",  # ex) '127.0.0.1'
                        port=3306,
-                       user="hjs429",  # ex) root
+                       user="hjs942",  # ex) root
                        password="1234",
-                       database="django_db",
+                       database="aws_db",
                        charset='utf8')
 
 
+# 안드로이드에 이미지를 받아올 때 필요한 Class
 class ImageCreateAPIView(CreateAPIView):
     serializer_class = ImageSerializer
     queryset = MyImage.objects.all()
 
 
+# 특정 경로에 있는 이미지 파일을 불러와 Predict후 결과값을 Json 형태로 웹 서버에 띄워준다.
 def image_upload_view(request):
     global pre_ans_str
     global landmark_value
@@ -59,7 +63,7 @@ def image_upload_view(request):
     #         # Get the current instance object to display in the template
     #         img_obj = form.instance
 
-    file = r'D:\bigdata_project\ImgProcessing\media\media\images\testFile.jpg'
+    file = r'/home/ubuntu/bigdata-final/ImgProcessing/media/media/images/testFile.jpg'
 
     X = []
     img = Image.open(file)
@@ -72,7 +76,8 @@ def image_upload_view(request):
     new_prediction = new_model.predict(X)
     pre_ans = new_prediction[0].argmax()  # 예측  레이블
 
-    if(new_prediction[0][pre_ans])>10:
+    # 전이학습 predict value 기준 값은 아직 정하기 너무 애매함
+    if(new_prediction[0][pre_ans])>=5:
         if pre_ans == 0:
             pre_ans_str = "63빌딩"
         elif pre_ans == 1:
@@ -99,8 +104,10 @@ def image_upload_view(request):
         pre_ans_str = "what the!!"
         landmark_value = new_prediction[0][pre_ans]
 
+
+    # 어디까지나 3개월 프로젝트이고 귀찮아서 쓴것 뿐, 현업에서는 절대 쓰지 말아야 하는 코드
     if os.path.exists(file):
-        os.remove(r'D:\bigdata_project\ImgProcessing\media\media\images\testFile.jpg')
+        os.remove(r'/home/ubuntu/bigdata-final/ImgProcessing/media/media/images/testFile.jpg')
 
     else:
         pass
@@ -250,11 +257,15 @@ def app_register(request):
             member.save()
             return JsonResponse({'code': '0000', 'msg': '계정 사용 가능!'}, status=200)
 
+
+# 호텔 추천 알고리즘 함수
 def hotel_recommendation(request):
     global pre_number
     global pre_ans_str
 
 
+   # objects.values를 써서 데이터를 가져왔지만 pymsql를 사용해 쿼리를 짠다면
+    # 훨씬 더 쉽게 코드를 짤 수 있다.
     if pre_ans_str == '경복궁':
         pre_number = 0
     elif pre_ans_str == '명동성당':
@@ -278,7 +289,6 @@ def hotel_recommendation(request):
     elif pre_ans_str == '구서울역':
         pre_number = 10
 
-
     landmark = Landmarks.objects.values('name', 'lat', 'lng','english_name')
     landmark_lat = landmark[pre_number]['lat']
     landmark_lng = landmark[pre_number]['lng']
@@ -290,6 +300,7 @@ def hotel_recommendation(request):
                                   'star_rate','telephone_number')
 
     distance_hot = []
+    # haversine 기법을 써서 완성된 데이터를 하나씩 추가해준다.
     for count, value in enumerate(hotel):
         hotel_lat = hotel[count]['lat']
         hotel_lng = hotel[count]['lng']
@@ -301,12 +312,15 @@ def hotel_recommendation(request):
                              hotel[count]['english_rating'],hotel[count]['picture_name'],
                              hotel[count]['star_rate'],hotel[count]['telephone_number']])
 
+    # haversine 기준으로 가장 가까운 곳 5곳만 추려주는 코드
     distance_hot = sorted(distance_hot, key=lambda x:x[0])
     n = 5
     distance_hot_final = distance_hot[:n]
 
     new_dict = {}
 
+
+    # 필요한 데이터들을 Json형태로 웹 서버에 띄운다.
     for i in range(len(distance_hot_final)):
         new_english_address = distance_hot_final[i][7]
         new_english_address = new_english_address.replace(",", "#")
@@ -323,6 +337,7 @@ def hotel_recommendation(request):
     return HttpResponse(simplejson.dumps(new_dict))
 
 
+# 맛집 추천 알고리즘 구현 기능
 def restaurant_recommendation(request):
     global pre_number
     global pre_ans_str
@@ -413,6 +428,7 @@ def restaurant_recommendation(request):
     return HttpResponse(simplejson.dumps(new_dict))
 
 
+# 랜드마크 정보 제공
 def landmark_information(request):
     global pre_number
     global pre_ans_str
@@ -451,6 +467,8 @@ def landmark_information(request):
         landmark_english_desc = landmark[pre_number]['eng_desc']
         landmark_desc = landmark[pre_number]['kor_desc']
 
+
+       # 중간에 전처리가 필요할 경우 간단하게 해준다.
         landmark_english_desc = landmark_english_desc.replace(",","#")
         landmark_desc = landmark_desc.replace(",", "#")
 
@@ -467,18 +485,18 @@ def landmark_information(request):
     return HttpResponse(simplejson.dumps(result_dict))
 
 
-def landmark_seoul(request):
-    landmarks = Landmarks.objects.values('name', 'lat', 'lng','english_name')
-    landmark_dict = {}
-    for i in range(11):
-        name = landmarks[i]['name']
-        lat = landmarks[i]['lat']
-        lng = landmarks[i]['lng']
-        english_name = landmarks[i]['english_name']
-        landmark_dict[i]=[name,lat,lng,english_name]
-
-
-    return HttpResponse(simplejson.dumps(landmark_dict))
+# def landmark_seoul(request):
+#     landmarks = Landmarks.objects.values('name', 'lat', 'lng','english_name')
+#     landmark_dict = {}
+#     for i in range(11):
+#         name = landmarks[i]['name']
+#         lat = landmarks[i]['lat']
+#         lng = landmarks[i]['lng']
+#         english_name = landmarks[i]['english_name']
+#         landmark_dict[i]=[name,lat,lng,english_name]
+#
+#
+#     return HttpResponse(simplejson.dumps(landmark_dict))
 
 
 

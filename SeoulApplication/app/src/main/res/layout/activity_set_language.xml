@@ -15,7 +15,7 @@
         android:layout_height="200dp"
         android:layout_marginBottom="24dp"
         android:layout_marginTop="30dp"
-        android:text="Hello Seoul"
+        android:text="Travely"
         android:textColor="@color/white"
         android:textSize="64sp"
         android:textStyle="normal"

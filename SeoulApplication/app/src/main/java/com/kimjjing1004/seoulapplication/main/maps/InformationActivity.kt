@@ -48,6 +48,8 @@ class InformationActivity : AppCompatActivity() {
 //        textviewHtmlDocument = findViewById<View>(R.id.textView) as TextView
 //        textviewHtmlDocument!!.movementMethod = ScrollingMovementMethod()
 
+
+        // Thread는 안쪽에 있는 업무를 한번에 한다고 생각하면 된다.
         Thread {
             value2 = getJson("http://15.165.104.248:8000/restaurant")
             Thread.sleep(100L)

@@ -69,6 +69,8 @@ class MapsActivity : FragmentActivity(), OnMyLocationButtonClickListener, OnMapC
                 Toast.makeText(this, "there isn't transferred name", Toast.LENGTH_SHORT).show()
             }
 
+            // 네트워크 작업은 main Thread에서 작업이 안되지만 반면에
+            // UI를 바꾸는 작업은 main Thread에서 가능하므로 binding.root.post를 사용해야한다.
             Thread {
                 value1 = getJson("http://15.165.104.248:8000/hotel")
                 value2 = getJson("http://15.165.104.248:8000/restaurant")
@@ -350,6 +352,8 @@ class MapsActivity : FragmentActivity(), OnMyLocationButtonClickListener, OnMapC
 
     }
 
+    
+    // 지도 마커 핀 클릭했을 때 사용하는 코드
     override fun onMarkerClick(p0: Marker): Boolean {
         if (korea == "KoreaData") {
             if (hashMap[p0.title] == "matzip") {

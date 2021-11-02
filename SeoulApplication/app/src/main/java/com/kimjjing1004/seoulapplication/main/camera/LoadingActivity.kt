@@ -31,6 +31,11 @@ class LoadingActivity : AppCompatActivity(){
         setContentView(binding.root)
         supportActionBar?.hide()
 
+
+
+        // 코드 양만 많을 뿐 원리는 단순하다.
+        // intent조건이 많은 이유는 CameraActivity 스플래시가 있는 LoadingActivity로 넘어가고
+        // 다시 CameraActivity로 돌아온다.(Fragement 개념도 나중에는 익혀야 된다.)
         if (intent.hasExtra("EnglishKey") && intent.hasExtra("PictureKey") && intent.hasExtra("RotationKey")) {
             english = intent.getStringExtra("EnglishKey").toString()
             korea = ""
@@ -38,7 +43,7 @@ class LoadingActivity : AppCompatActivity(){
             binding.loadDB.text = "Recognizing the image"
             rotationValue = intent.getStringExtra("RotationKey").toString()
 
-        } else if (intent.hasExtra("KoreaKey") && intent.hasExtra("PictureKey") && intent.hasExtra("RotationKey")) {
+        } else if (intent.hasExtra("KoreaKey") && intent.hasExtra("PictureKey") && intent.hasExtra("RotationKey")){
             korea = intent.getStringExtra("KoreaKey").toString()
             english = ""
             pictureValue = intent.getByteArrayExtra("PictureKey")!!
@@ -47,6 +52,8 @@ class LoadingActivity : AppCompatActivity(){
         } else {
             Toast.makeText(this, "there isn't transferred name", Toast.LENGTH_SHORT).show()
         }
+
+        // 스플래시 실행후 intent 값들 CameraActivity로 넘겨준다.
 
         Handler(Looper.getMainLooper()).postDelayed({
             if(english=="EnglishData"){
@@ -71,7 +78,7 @@ class LoadingActivity : AppCompatActivity(){
             else{
                 Toast.makeText(this, "application error!!", Toast.LENGTH_SHORT).show()
             }
-        }, 3000)
+        }, 5000)
 
 
 
