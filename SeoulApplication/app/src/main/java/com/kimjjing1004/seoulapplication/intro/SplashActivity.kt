@@ -14,6 +14,8 @@ class SplashActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+
+        // 화면에 표시해주는 스플래시 기능이며 필요한 파일은 json은 형태로 Lottie에서 받아오면 된다.
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, SetLanguageActivity::class.java)
             startActivity(intent)

@@ -37,6 +37,9 @@ class HomeActivity : AppCompatActivity() {
             Toast.makeText(this, "there isn't transferred name", Toast.LENGTH_SHORT).show()
         }
 
+        //Recycler 형태로 화면에 띄어주는 콬드
+        //Adpater 연결을 잘해야 에러가 생기지 않는다.
+
         imageAdapter = ImageAdapter(this)
         binding.imagesRecycler.adapter = imageAdapter
 

@@ -79,18 +79,26 @@ WSGI_APPLICATION = 'ImgProcessing.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# database setting
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_db',
-        'USER': 'hjs429',
+        'NAME': 'aws_db',
+        'USER': 'hjs942',
         'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'HOST': '15.165.104.248',
         'PORT' : 3306
     }
 }
 pymysql.version_info = (1,4,2,'final',0)
 pymysql.install_as_MySQLdb()
+
+# 'ENGINE': 'django.db.backends.mysql',
+# 'NAME': 'django_db',
+# 'USER': 'hjs429',
+# 'PASSWORD': '1234',
+# 'HOST': 'localhost',
+# 'PORT': 3306
 
 
 # Password validation

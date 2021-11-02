@@ -20,8 +20,6 @@ import androidx.core.content.FileProvider
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.kimjjing1004.seoulapplication.databinding.ActivityCameraBinding
-import com.kimjjing1004.seoulapplication.intro.SetLanguageActivity
-import com.kimjjing1004.seoulapplication.main.maps.MapsActivity
 import com.kimjjing1004.seoulapplication.splash.LocationSearchActivity
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -56,13 +54,17 @@ class CameraActivity : AppCompatActivity() {
     lateinit var pictureValue : ByteArray
     lateinit var pictureImage : ByteArray
     var rotateValue = ""
+    var exifOrientation = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         supportActionBar?.hide()
+
+
 
 
 
@@ -73,15 +75,20 @@ class CameraActivity : AppCompatActivity() {
             camera = intent.getStringExtra("Camera").toString()
             pictureImage = intent.getByteArrayExtra("Picture")!!
             var imageBitmap = BitmapFactory.decodeByteArray(pictureImage, 0, pictureImage.size)
+            binding.GImageView.setImageBitmap(imageBitmap)
 
+
+            // 회전되는 것을 야메로 막기 위해서 사용했을 뿐
+            // 실제로 어플을 출시하는 경우 이런 코드는 사용해선 안된다.
             rotateValue = intent.getStringExtra("Rotation").toString()
             if(rotateValue=="Rotate1"){
-                imageBitmap = rotateImage(imageBitmap, 90F)
+//                imageBitmap = rotateImage(imageBitmap, 90F)
                 binding.GImageView.setImageBitmap(imageBitmap)
             }
             else if(rotateValue=="Rotate2"){
                 binding.GImageView.setImageBitmap(imageBitmap)
             }
+
 
             binding.btnCamera.text = "Photo shoot"
             binding.imgBtn.text = "Select image"
@@ -89,27 +96,34 @@ class CameraActivity : AppCompatActivity() {
             binding.photoResult.text = "Take a picture or upload it"
             binding.TextMultiLine.text = ""
 
+            // XML 글자들을 숨기는 데 쓰이는 방법이다.
             binding.btnCamera.visibility = View.INVISIBLE
             binding.imgBtn.visibility = View.INVISIBLE
             binding.GImageView.visibility = View.INVISIBLE
             binding.photoResult.visibility = View.INVISIBLE
 
+            
+            // ByteArray형태를 bitmap 형태로 바꾼 후 ImageView에 띄워주는 코드
         } else if (intent.hasExtra("Korea") && intent.hasExtra("Camera")
-            && intent.hasExtra("Picture") && intent.hasExtra("Rotation")) {
+            && intent.hasExtra("Picture")  && intent.hasExtra("Rotation")) {
             korea = intent.getStringExtra("Korea").toString()
             english = ""
             camera = intent.getStringExtra("Camera").toString()
             pictureImage = intent.getByteArrayExtra("Picture")!!
             var imageBitmap = BitmapFactory.decodeByteArray(pictureImage, 0, pictureImage.size)
+            binding.GImageView.setImageBitmap(imageBitmap)
+            
 
             rotateValue = intent.getStringExtra("Rotation").toString()
             if(rotateValue=="Rotate1"){
-                imageBitmap = rotateImage(imageBitmap, 90F)
+//                imageBitmap = rotateImage(imageBitmap, 90F)
                 binding.GImageView.setImageBitmap(imageBitmap)
             }
             else if(rotateValue=="Rotate2"){
                 binding.GImageView.setImageBitmap(imageBitmap)
             }
+
+
             binding.btnCamera.text = "카메라촬영"
             binding.imgBtn.text = "이미지선택"
             binding.moveOnMap.text = "지도로이동"
@@ -176,6 +190,10 @@ class CameraActivity : AppCompatActivity() {
 
         setPermission()
 
+
+        // 한번에 동작시키기 위해서 무한 루프를 준것이다.
+        // 저장되어 있는 사진을 업로드 하기 위해 위치로 들어가고 사진을 선택하기 까지
+        // 시간은 계속 흐르고 있고 ImageView에 사진이 나와야만 다음 조건으로 넘어간다.
         binding.btnCamera.setOnClickListener {
             Thread {
                 btnchocie = "버튼1"  // 카메라 촬영 버튼을 눌렀을 때
@@ -213,6 +231,10 @@ class CameraActivity : AppCompatActivity() {
             // 기본 카메라 앱을 실행하여 사진 촬영.
         }
 
+
+        // 한번에 동작시키기 위해서 무한 루프를 준것이다.
+        // 저장되어 있는 사진을 업로드 하기 위해 위치로 들어가고 사진을 선택하기 까지
+        // 시간은 계속 흐르고 있고 ImageView에 사진이 나와야만 다음 조건으로 넘어간다.
         binding.imgBtn.setOnClickListener {
             Thread {
                 btnchocie = "버튼2" // 이미지 업로드 버튼을 눌렀을 때
@@ -265,34 +287,10 @@ class CameraActivity : AppCompatActivity() {
             }
         }
     }
-//    private fun fusion(bitmap: Bitmap){
-//        val ei = ExifInterface(result)
-//        val orientation: Int = ei.getAttributeInt(
-//            ExifInterface.TAG_ORIENTATION,
-//            ExifInterface.ORIENTATION_UNDEFINED
-//        )
-//
-//        var rotatedBitmap: Bitmap? = null
-//        when (orientation) {
-//            ExifInterface.ORIENTATION_ROTATE_90 -> rotatedBitmap = rotateImage(bitmap, 90F)
-//            ExifInterface.ORIENTATION_ROTATE_180 -> rotatedBitmap = rotateImage(bitmap, 180F)
-//            ExifInterface.ORIENTATION_ROTATE_270 -> rotatedBitmap = rotateImage(bitmap, 270F)
-//            ExifInterface.ORIENTATION_NORMAL -> rotatedBitmap = bitmap
-//            else -> rotatedBitmap = bitmap
-//        }
-//
-//    }
-
-    private fun rotateImage(source: Bitmap, angle: Float): Bitmap {
-        val matrix = Matrix()
-        matrix.postRotate(angle)
-        return Bitmap.createBitmap(
-            source, 0, 0, source.getWidth(), source.getHeight(),
-            matrix, true
-        )
-    }
 
 
+    // String 형태롤 다시 JSON형태로 바꾼 후 배열 자체가 문자열로 되어 있으므로
+    // 양 옆의 []를 제거한 후 split 조건으로 다시 배열로 만들어 필요한 값들을 받아온다.
     private fun judgeString() {
         val responseJSON = JSONObject(value)
         var message = responseJSON.getString("landmark")
@@ -331,6 +329,7 @@ class CameraActivity : AppCompatActivity() {
 
     }
 
+    // 미디어 파일에서 이미지를 열 수 있는 상당히 간단한 코드
     private fun openImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = MediaStore.Images.Media.CONTENT_TYPE
@@ -343,7 +342,8 @@ class CameraActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(btnchocie=="버튼1") {
             if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-                val bitmap: Bitmap
+                var bitmap: Bitmap
+                // 사진의 경로가 있어야만 파일 형태로 저장이 된다.
                 val file = File(curPhotoPath)
 
 
@@ -355,9 +355,33 @@ class CameraActivity : AppCompatActivity() {
                     bitmap = ImageDecoder.decodeBitmap(decode)
                     binding.GImageView.setImageBitmap(bitmap)
                 }
-
-
                 result  = curPhotoPath
+
+                val ei = ExifInterface(curPhotoPath)
+                val orientation: Int = ei.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_UNDEFINED
+                )
+
+                var rotatedBitmap: Bitmap? = null
+
+                when(orientation) {
+                    ExifInterface.ORIENTATION_ROTATE_90 ->
+                    rotatedBitmap = rotateImage(bitmap, 0F)
+
+                    ExifInterface.ORIENTATION_ROTATE_180 ->
+                    rotatedBitmap = rotateImage(bitmap, 90F)
+
+
+                    ExifInterface.ORIENTATION_ROTATE_270 ->
+                    rotatedBitmap = rotateImage(bitmap, 180F)
+
+
+                    ExifInterface.ORIENTATION_NORMAL ->
+                    rotatedBitmap = rotateImage(bitmap, 270F)
+
+                    else -> println("what???")
+                }
 
                 savePhoto(bitmap)
             }
@@ -377,6 +401,9 @@ class CameraActivity : AppCompatActivity() {
                 //여기까지는 이미지를 갤러리에서 클릭해서 그 사진을 이미지뷰에 보여주는 코드
 
 
+                
+                // 나중에 해당 코드를 다시 공부해본다.
+                // 현재로서는 완전하게 이해가 되지는 않음
                 val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
                 var cursor: Cursor = selectedImage?.let {
                     contentResolver?.query(
@@ -411,34 +438,7 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
-//    private fun exifOrientationToDefrees(exifOrientation: Int): Int {
-//        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
-//            return 90
-//        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
-//            return 180
-//        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
-//            return 270
-//        }
-//        return 0
-//    }
-//
-//    private fun rotate(bitmap: Bitmap?, degrees: Int): Bitmap? {
-//        var bitmap = bitmap
-//        if (degrees != 0 && bitmap != null) {
-//            val m = Matrix()
-//            m.setRotate(degrees.toFloat(), bitmap.width.toFloat() / 2, bitmap.height.toFloat() / 2)
-//            try {
-//                val converted = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, m, true)
-//                if (bitmap != converted) {
-//                    bitmap.recycle()
-//                    bitmap = converted
-//                }
-//            } catch (ex: OutOfMemoryError) {
-//
-//            }
-//        }
-//        return bitmap
-//    }
+
 
     private fun uploadPhoto() {
         //커서 사용해서 경로 확인
@@ -446,13 +446,17 @@ class CameraActivity : AppCompatActivity() {
         println(imagePath)
         println("이미지 경로 알려주셈")
 
+
+        // 이미지를 다시 줄이고 퀄리트를 높여 Stream 형태에서 BiteArray 형태로 만들어준다.
         var src: Bitmap = BitmapFactory.decodeFile(imagePath)
-        var resized: Bitmap = Bitmap.createScaledBitmap(src, 224, 224, true)
+        var resized: Bitmap = Bitmap.createScaledBitmap(src, 1000, 1000, true)
         val stream = ByteArrayOutputStream()
-        resized.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        resized.compress(Bitmap.CompressFormat.JPEG, 50, stream);
         val byteArray = stream.toByteArray()
         pictureValue = byteArray
 
+
+        // 비트맵 파일을 JPG 파일로 바꿔주는 방법
         fun saveBitmapToJpg(bitmap: Bitmap, name: String): String {
             val storage: File = getCacheDir() //  path = /data/user/0/YOUR_PACKAGE_NAME/cache
             val fileName = "$name.jpg"
@@ -478,10 +482,14 @@ class CameraActivity : AppCompatActivity() {
         println(imageFile.toString())
         println("이미지 파일 알려줘라")
 
+        // 장고 서버를 위한 retorit을 생성한다.
+
         val retrofit = Retrofit.Builder()
             .baseUrl(CameraService.DJANGO_SITE)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
+        // 서버 통신을 위해 필요한 RequestBody, Retrofit, multiPartBody, Call
         val postApi: CameraService = retrofit.create(CameraService::class.java)
         val requestBody: RequestBody =
             RequestBody.create(MediaType.parse("multipart/data"), imageFile)
@@ -500,6 +508,10 @@ class CameraActivity : AppCompatActivity() {
         })
     }
 
+    // 장고에서 웹서버로 띄운 것을 JSON형태로 받아와 STRING형태로 Return 해주는 코드
+    // 장고에서 한글로 띄어주는 코드를 짤경우 이중으로 변환하는 과정에서 오류가 생기므로
+    // 이상하게 나와도 해당 funcion을 써서 받아오면 전혀 문제 없다.
+    // 차후에 String형태로 Return 안해줘도 되는지 확인할 것
     fun getJson(Url: String): String {
         val response = StringBuilder()
         val stringUrl: String = Url
@@ -524,6 +536,8 @@ class CameraActivity : AppCompatActivity() {
         println("This is the response match API $response for url$stringUrl")
         return response.toString()
     }
+
+
 
     private fun takeCapture() {
         // 기본 카메라 앱 실행
@@ -626,20 +640,6 @@ class CameraActivity : AppCompatActivity() {
             folder.mkdirs() // make directory 줄임말로 해당 경로에 폴더 자동으로 새로 만들기.
         }
 
-//        val ei = ExifInterface(folderPath)
-//        var orientation: Int = ei.getAttributeInt(
-//            ExifInterface.TAG_ORIENTATION,
-//            ExifInterface.ORIENTATION_UNDEFINED
-//        )
-//        val angle = when (orientation) {
-//            ExifInterface.ORIENTATION_ROTATE_90 -> 90f
-//            ExifInterface.ORIENTATION_ROTATE_180 -> 180f
-//            ExifInterface.ORIENTATION_ROTATE_270 -> 270f
-//            else -> 0f
-//        }
-//
-//        val matrix = Matrix()
-//        matrix.postRotate(angle)
 
 
         // 실제적인 저장처리
@@ -658,48 +658,16 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
-//    private fun rotatedBitmap(bitmap: Bitmap?): Bitmap? {
-//        val matrix = Matrix()
-//        var resultBitmap: Bitmap? = null
-//
-//        when (getOrientationOfImage(curPhotoPath)) {
-//            0 -> matrix.setRotate(0F)
-//            90 -> matrix.setRotate(90F)
-//            180 -> matrix.setRotate(180F)
-//            270 -> matrix.setRotate(270F)
-//        }
-//
-//        resultBitmap = try {
-//            bitmap?.let {
-//                Bitmap.createBitmap(it, 0, 0, bitmap.width, bitmap.height, matrix, true)
-//            }
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//            null
-//        }
-//        return resultBitmap
-//    }
 
-//    private fun getOrientationOfImage(filepath: String): Int? {
-//        var exif: ExifInterface? = null
-//        var result: Int? = null
-//
-//        try {
-//            exif = ExifInterface(filepath)
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//            return -1
-//        }
-//
-//        val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1)
-//        if (orientation != -1) {
-//            result = when (orientation) {
-//                ExifInterface.ORIENTATION_ROTATE_90 -> 90
-//                ExifInterface.ORIENTATION_ROTATE_180 -> 180
-//                ExifInterface.ORIENTATION_ROTATE_270 -> 270
-//                else -> 0
-//            }
-//        }
-//        return result
-//    }
+    // 촬영할 때 이미지 회전되는 것을 방지하기 위해 사용
+    fun rotateImage(source: Bitmap, angle: Float): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(angle)
+        return Bitmap.createBitmap(
+            source, 0, 0, source.width, source.height,
+            matrix, true
+        )
+    }
+
+
 }

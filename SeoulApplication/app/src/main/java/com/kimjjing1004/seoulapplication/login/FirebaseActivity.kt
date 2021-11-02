@@ -61,12 +61,12 @@ class FirebaseActivity : AppCompatActivity() {
         if (firebaseUser == null) {
             // user not logged in
             if (english=="EnglishData") {
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("EnglishKey", "EnglishData")
                 startActivity(intent)
             }
             else if(korea=="KoreaData") {
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("KoreaKey", "KoreaData")
                 startActivity(intent)
             }
